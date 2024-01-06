@@ -1,4 +1,4 @@
-import  cartImg  from '../../../assets/cart.svg';
+import  cartImg  from '../../assets/cart.svg';
 import './styles.css';
 
 export default function HeaderClient() {
