@@ -1,5 +1,4 @@
 import './styles.css';
-import computerImg from '../../assets/computer.svg';
 import { ProductDTO } from '../../models/product';
 
 type Props = {
