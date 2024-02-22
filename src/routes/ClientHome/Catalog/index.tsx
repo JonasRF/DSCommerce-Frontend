@@ -5,14 +5,13 @@ import SearchBar from '../../../components/SearchBar';
 import * as productService from '../../../services/product-service';
 import './styles.css';
 import { ProductDTO } from '../../../models/product';
-import axios from 'axios';
 
 export default function Catalog() {
 
     const [ products, setProducts ] = useState<ProductDTO[]>([]);
 
     useEffect(() => {
-      axios.get("http://localhost:8080/products?size=12")
+      productService.findAll()
       .then(response => {
         setProducts(response.data.content);
       })
