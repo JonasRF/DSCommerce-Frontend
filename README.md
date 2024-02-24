@@ -45,38 +45,9 @@ pedido continua registrado com o preço real que foi vendido na época).
 - Um usuário pode ter um ou mais "roles", que são os perfis de acesso deste usuário
 no sistema (client, admin).
 
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/1da9a5a0-624f-4b76-ab80-53480ba04d86)
 
-5. Casos de uso (visão geral)
-O escopo funcional do sistema consiste nos seguintes casos de uso:
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/31011da7-7d9e-4868-a110-64bf3b19ea9a)
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/7b5b2531-4fa3-4d65-8bdd-60b3a96cafa6)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/2bf9197e-6aab-4e0c-813d-94cf15a4bd54)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/6f23cc74-c821-4549-ba1a-4bd5d7991e37)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/c67932be-4e1a-4a28-825c-5fde57b13677)
-
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/bb774796-35d8-4cb6-8455-82f2fe1dd547)
-
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/be71c745-f247-4b7a-81a3-6d6a34215ac6)
-
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/d7c1989e-473f-4db7-90b9-1500893522f7)
-
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/079b4c3b-cbec-46b6-a930-aafaf869992a)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/512c92c9-71b9-4cf3-81bd-512d3810e2b9)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/a2366a3d-b270-426d-a580-cc73a99c6baa)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/94163148-8147-4982-a8c5-6efbc8aec55f)
-
-![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/f5ba6b05-06b3-45de-a494-9fe15ae41c72)
+![image](https://github.com/JonasRF/DSCommerce-frontend/assets/77034798/5bd13e94-193b-41a9-b801-4f0f25ddadc5)
+![image](https://github.com/JonasRF/DSCommerce-frontend/assets/77034798/532321d6-1deb-498f-a035-550760ce52f7)
+![image](https://github.com/JonasRF/DSCommerce-frontend/assets/77034798/38f368dc-7b75-4e7a-9dbe-ba62eedc11f7)
 
 
