@@ -40,7 +40,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="dsc-cart-item-right">
-                R${(item.price * item.quantity).toFixed(2)}
+                R$ {(item.price * item.quantity).toFixed(2)}
               </div>
             </div>
           ))}
