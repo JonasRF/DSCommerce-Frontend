@@ -157,6 +157,18 @@ nav h1 {
  
 }
 
+.dsc-section-title {
+  text-align: center;
+  color: var(--dsc-color-font-primary);
+  font-size: 22px;
+  margin-right: 630px;
+  margin-top: 10px;
+}
+
+.dsc-mb20 {
+  margin-bottom: 20px;
+}
+
 .dsc-card {
   margin-top: 20px;
   background-color: var(--dsc-color-card-bg);
