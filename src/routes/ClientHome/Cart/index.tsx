@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
 import * as cartService from "../../../services/cart-service";
-import { OrderDTO } from "../../../models/order";
+import { OrderDTO} from "../../../models/order";
 import { Link } from "react-router-dom";
 
 
@@ -13,6 +13,16 @@ const Cart = () => {
     cartService.clearCart();
     setCart(cartService.getCart());
   }
+
+  function handleIncreaseItem(productId: number) { 
+      cartService.increaseItem(productId);
+      setCart(cartService.getCart());
+    }
+
+    function handleDecreaseItem(productId: number) { 
+      cartService.decreaseItem(productId);
+      setCart(cartService.getCart());
+    }
 
   return (
     <main>
@@ -27,15 +37,15 @@ const Cart = () => {
         : (
           <div className="dsc-card">
           {cart.items.map((item) => (
-            <div className="dsc-cart-item-container dsc-line-bottom">
+            <div key={item.productId} className="dsc-cart-item-container dsc-line-bottom">
               <div className="dsc-cart-item-left">
                 <img src={item.imgUrl} alt={item.name} />
                 <div className="dsc-cart-item-description">
                   <h3>{item.name}</h3>
                   <div className="dsc-cart-item-quantity-container">
-                    <div className="dsc-cart-item-decrement">-</div>
+                    <div onClick={() => handleDecreaseItem(item.productId)} className="dsc-cart-item-decrement">-</div>
                     <p>{item.quantity}</p>
-                    <div className="dsc-cart-item-increment">+</div>
+                    <div onClick={() => handleIncreaseItem(item.productId)} className="dsc-cart-item-increment">+</div>
                   </div>
                 </div>
               </div>
