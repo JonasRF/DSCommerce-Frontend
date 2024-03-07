@@ -4,7 +4,6 @@ import * as cartService from "../../../services/cart-service";
 import { OrderDTO} from "../../../models/order";
 import { Link } from "react-router-dom";
 
-
 const Cart = () => {
 
   const [ cart, setCart ] = useState<OrderDTO>(cartService.getCart());
@@ -15,13 +14,13 @@ const Cart = () => {
   }
 
   function handleIncreaseItem(productId: number) { 
-      cartService.increaseItem(productId);
-      setCart(cartService.getCart());
+    cartService.increaseItem(productId);
+    setCart(cartService.getCart());
     }
 
-    function handleDecreaseItem(productId: number) { 
-      cartService.decreaseItem(productId);
-      setCart(cartService.getCart());
+  function handleDecreaseItem(productId: number) { 
+    cartService.decreaseItem(productId);
+    setCart(cartService.getCart());
     }
 
   return (
@@ -54,7 +53,6 @@ const Cart = () => {
               </div>
             </div>
           ))}
-
           <div className="dsc-cart-total-container">
             <span className="dsc-cart-total">Total</span>
             <h3>R$ {cart.total.toFixed(2)}</h3>
