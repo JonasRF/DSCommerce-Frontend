@@ -33,7 +33,6 @@ export default function ProductDetails() {
       navigate("/cart");
     }
   }
-
     return(
       <main>
         <section id="product-details-section" className="dsc-container">
