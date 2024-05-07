@@ -1,4 +1,5 @@
 import './styles.css';
+import { Link } from "react-router-dom";
 
 export default function Login() {
     return (
@@ -7,6 +8,10 @@ export default function Login() {
                 <div className="dsc-login-form-container">
                     <form className="dsc-card dsc-form">
                         <h2>Login</h2>
+                        <Link className='signup' to={"/signup"}>
+                            <div className='new'>New User?</div> 
+                            <div className='sign'>Sign Up Here</div>
+                        </Link>
                         <div className="dsc-form-controls-container">
                             <div>
                                 <input className="dsc-form-control"
@@ -18,6 +23,9 @@ export default function Login() {
                                 <input className="dsc-form-control"
                                     type="password"
                                     placeholder="Senha" />
+                            </div>
+                            <div className='forgot'>
+                                <p>Forgot Password?</p>
                             </div>
                         </div>
 
