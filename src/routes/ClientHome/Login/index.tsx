@@ -16,6 +16,12 @@ function handleSubmit(event: any) {
     loginRequest(formData);
 }
 
+function handleInputChange(event: any) {
+    const value = event.target.value;
+    const name = event.target.name;
+    setFormData({...formData, [name]: value});
+}
+
     return (
         <main>
             <section id="login-section" className="dsc-container">
@@ -28,15 +34,25 @@ function handleSubmit(event: any) {
                         </Link>
                         <div className="dsc-form-controls-container">
                             <div>
-                                <input className="dsc-form-control"
+                                <input 
+                                    name="username"
+                                    value={formData.username}
+                                    className="dsc-form-control"
                                     type="text"
-                                    placeholder="Email" />
+                                    placeholder="Email" 
+                                    onChange={handleInputChange}
+                                    />
                                 <div className="dsc-form-error"></div>
                             </div>
                             <div>
-                                <input className="dsc-form-control"
+                                <input 
+                                    name="password"
+                                    value={formData.password}
+                                    className="dsc-form-control"
                                     type="password"
-                                    placeholder="Senha" />
+                                    placeholder="Senha"
+                                    onChange={handleInputChange}
+                                    />
                             </div>
                             <div className='forgot'>
                                 <p>Forgot Password?</p>
