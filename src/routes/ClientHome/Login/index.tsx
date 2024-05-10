@@ -1,12 +1,26 @@
+import { lazy, useState } from 'react';
 import './styles.css';
 import { Link } from "react-router-dom";
+import { loginRequest } from '../../../services/auth-service';
+import { CredentialsDTO } from '../../../models/auth';
 
 export default function Login() {
+
+    const [formData, setFormData] = useState<CredentialsDTO>({
+        username: '',
+        password: ''
+    })
+
+function handleSubmit(event: any) {
+    event.preventDefault();
+    loginRequest(formData);
+}
+
     return (
         <main>
             <section id="login-section" className="dsc-container">
                 <div className="dsc-login-form-container">
-                    <form className="dsc-card dsc-form">
+                    <form className="dsc-card dsc-form" onSubmit={handleSubmit}>
                         <h2>Login</h2>
                         <Link className='signup' to={"/signup"}>
                             <div className='new'>New User?</div> 
