@@ -1,8 +1,8 @@
-import { lazy, useState } from 'react';
+import { useState } from 'react';
 import './styles.css';
 import { Link } from "react-router-dom";
-import { loginRequest } from '../../../services/auth-service';
 import { CredentialsDTO } from '../../../models/auth';
+import * as authService from '../../../services/auth-service';
 
 export default function Login() {
 
@@ -13,7 +13,13 @@ export default function Login() {
 
 function handleSubmit(event: any) {
     event.preventDefault();
-    loginRequest(formData);
+    authService.loginRequest(formData)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error  => {
+        console.log("Erro de login", error);
+    });
 }
 
 function handleInputChange(event: any) {
@@ -21,7 +27,6 @@ function handleInputChange(event: any) {
     const name = event.target.name;
     setFormData({...formData, [name]: value});
 }
-
     return (
         <main>
             <section id="login-section" className="dsc-container">
