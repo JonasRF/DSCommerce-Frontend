@@ -142,11 +142,6 @@ nav a {
 /*----------------------------------------------*/
 /*generic styles-*/
 
-.dsc-header-admin {
-  background-color: var(--dsc-color-font-secondary);
-  color: var(--dsc-color-font-tertiary);
-}
-
 nav h1 {
   font-size: 16px;
 }

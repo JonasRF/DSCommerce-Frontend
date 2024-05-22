@@ -1,0 +1,16 @@
+  .dsc-header-admin {
+    background-color: var(--dsc-color-bg-quaternary);
+    color: var(--dsc-color-font-tertiary);
+  }
+  
+  .dsc-title-listing {
+  color: var(--dsc-color-font-primary);
+  }
+  
+  @media (min-width: 576px) {
+    .dsc-title-listing {
+      display: flex;
+      justify-content: left;
+      font-size: 24px;
+    }
+  }
