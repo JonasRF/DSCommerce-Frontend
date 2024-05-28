@@ -1,0 +1,23 @@
+#login-section {
+    padding: 100px 0;
+}
+
+.dsc-login-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.dsc-form-recovery-container {
+    width: 320px;
+    margin-top: 60px;
+}
+
+.dsc-recovery-form-buttons {
+    width: 320px;
+    margin-top: 50px;
+}
+
+@media (min-width: 576px) {
+    #login-section {
+        padding: 40px 0;
+    }
+}

@@ -13,12 +13,6 @@
 .new {
     font-size: 12px;
     margin-right: 5px;
-   color: none;
-}
-
-.sign {
-    text-decoration: underline;
-    color: var(--dsc-color-font-primary);
 }
 
 .dsc-login-form-container {

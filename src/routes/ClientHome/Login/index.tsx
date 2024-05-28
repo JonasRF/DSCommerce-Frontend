@@ -59,9 +59,13 @@ function handleInputChange(event: any) {
                                     onChange={handleInputChange}
                                     />
                             </div>
-                            <div className='forgot'>
-                                <p>Forgot Password?</p>
+                        
+                            <div>
+                            <Link className='forgot' to={"/recovery"}>
+                                <div>Forgot Password?</div>
+                                </Link>
                             </div>
+                            
                         </div>
 
                         <div className="dsc-login-form-buttons dsc-mt20">
