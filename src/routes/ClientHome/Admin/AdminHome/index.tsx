@@ -9,20 +9,16 @@ export default function AdminHome() {
 
   useEffect(() => {
     userService.findMe()
-    .then(response => {
-      setUser(response.data)
-      console.log(response.data)
-    })
-    .catch(error => {
-      console.log("Error", error);
-    })
+      .then(response => {
+        setUser(response.data)
+        console.log(response.data)
+      })
   }, [])
-
-    return(
-        <main>
-        <section id="admin-home-section" className="dsc-container">
-          <h2 className="dsc-title-listing">Bem-vindo à área administrativa {user?.name}</h2>
-        </section>
-      </main>
-    );
+  return (
+    <main>
+      <section id="admin-home-section" className="dsc-container">
+        <h2 className="dsc-title-listing">Bem-vindo à área administrativa {user?.name}</h2>
+      </section>
+    </main>
+  );
 }
