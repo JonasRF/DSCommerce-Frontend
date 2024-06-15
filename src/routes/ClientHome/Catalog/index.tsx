@@ -5,6 +5,7 @@ import SearchBar from '../../../components/SearchBar';
 import * as productService from '../../../services/product-service';
 import './styles.css';
 import { ProductDTO } from '../../../models/product';
+import { hasAnyHoles } from '../../../services/auth-service';
 
 type QueryParams = {
   page: number;
