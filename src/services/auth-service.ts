@@ -66,4 +66,4 @@ export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
 export function isAuthenticated(): boolean {
     let tokenPayload = getAccessTokenPayload();
     return tokenPayload && tokenPayload.exp * 1000 > Date.now() ? true : false;
-    }
+}

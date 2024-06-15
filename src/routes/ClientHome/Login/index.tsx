@@ -26,7 +26,6 @@ function handleInputChange(event: any) {
     const name = event.target.name;
     setFormData({...formData, [name]: value});
 }
-
     return (
         <main>
             <section id="login-section" className="dsc-container">
@@ -58,14 +57,12 @@ function handleInputChange(event: any) {
                                     placeholder="Senha"
                                     onChange={handleInputChange}
                                     />
-                            </div>
-                        
+                            </div>            
                             <div>
                             <Link className='forgot' to={"/recovery"}>
                                 <div>Forgot Password?</div>
                                 </Link>
-                            </div>
-                            
+                            </div>                          
                         </div>
 
                         <div className="dsc-login-form-buttons dsc-mt20">
