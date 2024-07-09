@@ -42,6 +42,7 @@ body {
 main {
   padding: 0;
 }
+
 /*------------------------------------------------*/
 /*header styles*/
 header {
@@ -116,7 +117,11 @@ nav a {
   align-items: flex-end;
 }
 
-
+.dsc-logger-user span {
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
 
 @media (min-width: 576px) {
 
@@ -150,7 +155,7 @@ nav h1 {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
- 
+
 }
 
 .dsc-section-title {
@@ -178,6 +183,7 @@ nav h1 {
   padding: 10px;
   border-bottom: 1px solid var(--dsc-color-font-placeholder);
 }
+
 .dsc-p20 {
   padding: 0 10px;
 }
