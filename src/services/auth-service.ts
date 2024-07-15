@@ -4,6 +4,7 @@ import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
 import * as accessTokenRepository from '../localStorage/access-token-repository';
+import * as tokenRepository from '../localStorage/token-repository';
 import { RecoveryDTO } from "../models/recovery";
 import jwtDecode from "jwt-decode";
 
@@ -41,7 +42,7 @@ export function recoveryLogin(loginData: RecoveryDTO) {
     }
     return requestBackend(config);
 }
-
+///////////////////////// ACCESS_TOKEN_REPOSITORY////////////////////////////////
 export function logout() {
     accessTokenRepository.remove();
 }
@@ -53,7 +54,19 @@ export function saveAccessToken(token: string) {
 export function getAccessToken() {
     return accessTokenRepository.get();
 }
+/////////////////////////////// TOKEN_PASSWORD  /////////////////////////////////
+export function tokenPasswordLogout(){
+    return tokenRepository.remove();
+}
 
+export function saveTokenPassword(token: string) {
+    return tokenRepository.save(token);
+}
+
+export function getTokenPassword() {
+     return tokenRepository.get(); 
+}
+/////////////////////////////////////////////////////////////////////////////////
 export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
     try {
         const token = accessTokenRepository.get();

@@ -13,6 +13,7 @@ export default function RecoveryLogin() {
         event.preventDefault();
         authService.recoveryLogin(formData)
         .then(response => {
+             authService.saveTokenPassword(response.data.token)
             console.log(response.data);
         })
         .catch(error  => {
