@@ -5,7 +5,7 @@ import { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
 import * as accessTokenRepository from '../localStorage/access-token-repository';
 import * as tokenRepository from '../localStorage/token-repository';
-import { RecoveryDTO } from "../models/recovery";
+import { RecoveryDTO, PasswordDTO } from "../models/recovery";
 import jwtDecode from "jwt-decode";
 
 export function loginRequest(loginData: CredentialsDTO) {
@@ -42,6 +42,24 @@ export function recoveryLogin(loginData: RecoveryDTO) {
     }
     return requestBackend(config);
 }
+
+ export function recoveryPassword(loginData: PasswordDTO, token: string) {
+
+    const headers = {
+        "Content-Type": "application/json",
+    }
+
+    const requestBody = QueryString.parse({ ...loginData, token });
+
+    const config: AxiosRequestConfig = {
+        method: "PUT",
+        url: "/auth/new-password",
+        data: requestBody,
+        headers
+    }
+    return requestBackend(config);
+}
+
 ///////////////////////// ACCESS_TOKEN_REPOSITORY////////////////////////////////
 export function logout() {
     accessTokenRepository.remove();

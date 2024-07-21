@@ -1,29 +1,35 @@
 import './styles.css';
 import * as authService from '../../../services/auth-service';
 import { useState } from 'react';
-import { RecoveryDTO } from '../../../models/recovery';
+import { PasswordDTO } from '../../../models/recovery';
 
-export default function RecoveryLogin() {
+export default function RecoveryPassword() {
 
-    const [formData, setFormData] = useState<RecoveryDTO>({
-        email: ''
+    const [formData, setFormData] = useState<PasswordDTO>({
+        password: ''
     })
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        authService.recoveryLogin(formData)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error  => {
-            console.log("Erro de login", error);
-        });
+
+        let url = window.location.pathname;
+        let parts = url.split('/');
+        let token = parts.pop() || parts.pop();
+        console.log(token);
+
+        authService.recoveryPassword(formData, String(token))
+            .then(response => {
+                console.log(response.status);
+            })
+            .catch(error => {
+                console.log("Erro de login", error);
+            });
     }
 
     function handleInputChange(event: any) {
         const value = event.target.value;
         const name = event.target.name;
-        setFormData({...formData, [name]: value});
+        setFormData({ ...formData, [name]: value });
     }
 
     return (
@@ -31,17 +37,17 @@ export default function RecoveryLogin() {
             <section id="login-section" className="dsc-container">
                 <div className="dsc-login-form-container">
                     <form className="dsc-card dsc-form" onSubmit={handleSubmit}>
-                        <h2>Recuperação de senha</h2>
+                        <h2>Nova senha</h2>
                         <div className="dsc-form-recovery-container">
                             <div>
-                                <input 
-                                    name="email"
-                                    value={formData.email}
+                                <input
+                                    name="password"
+                                    value={formData.password}
                                     className="dsc-form-control"
-                                    type="email"
-                                    placeholder="Email" 
+                                    type="password"
+                                    placeholder="Password"
                                     onChange={handleInputChange}
-                                    />
+                                />
                                 <div className="dsc-form-error"></div>
                             </div>
                         </div>

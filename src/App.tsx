@@ -18,6 +18,7 @@ import { AccessTokenPayloadDTO } from "./models/auth";
 import { ContextToken } from "./utils/context-token";
 import * as authService from "./services/auth-service";
 import * as cartService from "./services/cart-service";
+import RecoveryPassword from "./routes/ClientHome/RecoveryPassword";
 
 export default function App() {
 
@@ -47,6 +48,7 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="recovery" element={<RecoveryLogin />} />
+            <Route path="/recover-password/:token" element={< RecoveryPassword />} />
           </Route>
           <Route path="/admin/" element={<PrivateRoute roles={["ROLE_ADMIN"]}><Admin /></PrivateRoute>}>
             <Route index element={<AdminHome />} />
