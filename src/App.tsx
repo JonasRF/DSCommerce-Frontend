@@ -19,6 +19,7 @@ import { ContextToken } from "./utils/context-token";
 import * as authService from "./services/auth-service";
 import * as cartService from "./services/cart-service";
 import RecoveryPassword from "./routes/ClientHome/RecoveryPassword";
+import Confirmation from "./routes/ClientHome/Confirmation";
 
 export default function App() {
 
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="product-details/:productId" element={<ProductDetails />} />
             <Route path="cart" element={<Cart />} />
             <Route path="login" element={<Login />} />
+            <Route path="confirmation/:orderId" element={<Confirmation />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="recovery" element={<RecoveryLogin />} />
             <Route path="/recover-password/:token" element={< RecoveryPassword />} />
