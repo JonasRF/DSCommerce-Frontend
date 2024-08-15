@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,400&family=Roboto:wght@100;300;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
   --dsc-color-bg-primary: #e8e8e8;
   --dsc-color-bg-secondary: #ffe500;
   --dsc-color-bg-tertiary: #636363;
   --dsc-color-bg-quaternary: #0caf1d;
-  --dsc-color-bg-count: #f00;
 
   --dsc-color-card-bg: #fff;
   --dsc-color-card-border: #d9d9d9;
@@ -42,7 +41,6 @@ body {
 main {
   padding: 0;
 }
-
 /*------------------------------------------------*/
 /*header styles*/
 header {
@@ -66,7 +64,6 @@ nav h1 {
 
 nav a {
   font-size: 14px;
-  font-weight: 700;
 }
 
 .dsc-navbar-right {
@@ -85,14 +82,12 @@ nav a {
 }
 
 .dsc-menu-item {
-  margin: 0 20px 0 0;
   display: flex;
   align-items: center;
 }
 
 .dsc-menu-item p {
-  display: none;
-  margin-left: 5px;
+  margin: 5px 10px;
   font-size: 14px;
 }
 
@@ -117,25 +112,63 @@ nav a {
   align-items: flex-end;
 }
 
-.dsc-logger-user span {
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 700;
+.dsc-search-bar {
+  display: flex;
+  height: 40px;
+  color: var(--dsc-color-font-placeholder);
+  margin-bottom: 20px;
+}
+.dsc-search-bar button,
+.dsc-search-bar input {
+  border: 1px solid var(--dsc-color-card-border);
+}
+
+.dsc-search-bar input {
+  width: calc(100% - 80px);
+  border-right: none;
+  border-left: none;
+  padding: 0 10px;
+  font-size: 16px;
+  color: var(--dsc-color-card-border);
+}
+
+.dsc-search-bar input {
+  outline: none;
+}
+
+.dsc-search-bar input::placeholder {
+  color: var(--dsc-color-font-placeholder);
+}
+
+.dsc-search-bar button {
+  width: 40px;
+  color: var(--dsc-color-font-primary);
+}
+
+.dsc-search-bar button[type="submit"] {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.dsc-search-bar button[type="reset"] {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
 }
 
 @media (min-width: 576px) {
 
   .dsc-menu-item {
-    margin: 0 20px;
+    margin: 5px 20px 0 2px;
     display: flex;
     align-items: center;
+   
   }
 
   .dsc-menu-inicio {
     display: flex;
     text-align: center;
     padding: 10px 10px 0 0;
-    margin-top: -0.3rem;
+    margin-right: 10px;
   }
 
   .dsc-menu-inicio p {
@@ -147,6 +180,16 @@ nav a {
 /*----------------------------------------------*/
 /*generic styles-*/
 
+.dsc-header-client {
+  background-color: var(--dsc-color-bg-secondary);
+  color: var(--dsc-color-font-primary);
+}
+
+.dsc-header-admin {
+  background-color: var(--dsc-color-font-secondary);
+  color: var(--dsc-color-font-tertiary);
+}
+
 nav h1 {
   font-size: 16px;
 }
@@ -155,27 +198,13 @@ nav h1 {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-
-}
-
-.dsc-section-title {
-  text-align: center;
-  color: var(--dsc-color-font-primary);
-  font-size: 22px;
-  margin-right: 630px;
-  margin-top: 10px;
-}
-
-.dsc-mb20 {
-  margin-bottom: 20px;
+ 
 }
 
 .dsc-card {
-  width: 400px;
-  height: 430px;
   margin-top: 20px;
   background-color: var(--dsc-color-card-bg);
-  border-radius: 20px;
+  border-radius: 4px;
   border: 1px solid var(--dsc-color-font-placeholder);
 }
 
@@ -183,7 +212,6 @@ nav h1 {
   padding: 10px;
   border-bottom: 1px solid var(--dsc-color-font-placeholder);
 }
-
 .dsc-p20 {
   padding: 0 10px;
 }
@@ -229,6 +257,31 @@ nav h1 {
   align-items: center;
 }
 
+.dsc-btn-blue {
+  border: none;
+  background-color: var(--dsc-color-btn-primary);
+  color: var(--dsc-color-btn-inverse);
+}
+
+.dsc-btn-white {
+  background-color: var(--dsc-color-btn-inverse);
+  color: var(--dsc-color-btn-primary);
+  border: 1px solid var(--dsc-color-btn-primary);
+}
+
+.dsc-btn-next-page {
+  width: 100%;
+  border: 1px solid var(--dsc-color-btn-primary);
+  padding: 10px;
+  border-radius: 4px;
+  color: var(--dsc-color-btn-primary);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .dsc-btn-new-product {
   width: 100%;
   border: 1px solid var(--dsc-color-btn-primary);
@@ -263,13 +316,12 @@ nav h1 {
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
-  margin-top: 30px;
 }
 
 .dsc-form-controls-container {
   width: 100%;
   display: grid;
-  margin: 15px 0;
+  margin: 30px 0;
 }
 
 .dsc-form-control {
