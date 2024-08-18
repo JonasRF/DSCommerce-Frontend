@@ -6,6 +6,7 @@ import { ProductDTO } from "../../../../models/product";
 import * as productService from "../../../../services/product-service";
 import SearchBar from "../../../../components/SearchBar";
 import ButtonNextPage from "../../../../components/ButtonNextPage";
+import DialogInfo from "../../../../components/DialogInfo";
 
 type QueryParams = {
   page: number;
@@ -13,6 +14,11 @@ type QueryParams = {
 }
 
 export default function ProductListing() {
+
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    message: "Operação realizada com sucesso!"
+  })
 
   const [isLastPage, setIsLastPage] = useState(false);
 
@@ -37,9 +43,17 @@ export default function ProductListing() {
     setQueryParams({ ...queryParams, page: 0, name: searchText });
   }
 
-  const handleNextPageClick = ()  => {
-    setQueryParams({...queryParams, page: queryParams.page + 1});
-   }
+  const handleNextPageClick = () => {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+  }
+
+  const handleDialogInfoClose = () => {
+    setDialogInfoData({ ...dialogInfoData, visible: false });
+  }
+
+  const handleDeleteClick = () => {
+    setDialogInfoData({ ...dialogInfoData, visible: true });
+  }
 
   return (
     <main>
@@ -74,21 +88,27 @@ export default function ProductListing() {
                   <td><img className="dsc-product-listing-image" src={product.imgUrl} alt={product.name} /></td>
                   <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                   <td className="dsc-txt-left">{product.name}</td>
-                  <td><img className="dsc-product-listing-btn" src={editIcon} alt="Edit" /></td>
-                  <td><img className="dsc-product-listing-btn" src={deleteIcon} alt="Delete" /></td>
+                  <td><img className="dsc-product-listing-btn" src={deleteIcon} alt="Edit" /></td>
+                  <td><img onClick={handleDeleteClick} className="dsc-product-listing-btn" src={editIcon} alt="Delete" /></td>
                 </tr>
               ))
             }
           </tbody>
         </table>
-
         {
           !isLastPage &&
           <div onClick={handleNextPageClick}>
             <ButtonNextPage name="Carregar mais" />
-         </div>
-         }
+          </div>
+        }
       </section>
+      {
+        dialogInfoData.visible &&
+        <DialogInfo
+          message={dialogInfoData.message}
+          onDialogClose={handleDialogInfoClose}
+        />
+      }
     </main>
   );
 }

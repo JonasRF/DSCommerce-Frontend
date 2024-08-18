@@ -15,7 +15,6 @@ export default function RecoveryPassword() {
         let url = window.location.pathname;
         let parts = url.split('/');
         let token = parts.pop() || parts.pop();
-        console.log(token);
 
         authService.recoveryPassword(formData, String(token))
             .then(response => {

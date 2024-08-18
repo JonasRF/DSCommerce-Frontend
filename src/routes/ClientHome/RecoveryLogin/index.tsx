@@ -12,8 +12,8 @@ export default function RecoveryLogin() {
     function handleSubmit(event: any) {
         event.preventDefault();
         authService.recoveryLogin(formData)
-        .then(response => {
-            console.log(response.data);
+        .then(() => {
+            console.log("Sucesso!!!");
         })
         .catch(error  => {
             console.log("Erro de login", error);
