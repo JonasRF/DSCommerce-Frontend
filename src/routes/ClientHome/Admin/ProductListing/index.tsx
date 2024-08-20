@@ -7,6 +7,7 @@ import * as productService from "../../../../services/product-service";
 import SearchBar from "../../../../components/SearchBar";
 import ButtonNextPage from "../../../../components/ButtonNextPage";
 import DialogConfirmation from "../../../../components/DialogConfirmation";
+import DialogInfo from "../../../../components/DialogInfo";
 
 type QueryParams = {
   page: number;
@@ -15,8 +16,14 @@ type QueryParams = {
 
 export default function ProductListing() {
 
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    message: "Operação con sucesso!"
+  })
+
   const [dialogConfirmationData, setDialogConfirmationData] = useState({
     visible: false,
+    id: 0,
     message: "Tem certeza?"
   })
 
@@ -47,13 +54,31 @@ export default function ProductListing() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
-  const handleDeleteClick = () => {
-    setDialogConfirmationData({ ...dialogConfirmationData, visible: true });
+  const handleDeleteClick = (productId: number) => {
+    setDialogConfirmationData({ ...dialogConfirmationData, id: productId, visible: true });
   }
 
-  const handleDialogConfirmationAnswer = (answer: boolean) => {
-    console.log("Resposta", answer);
-    setDialogConfirmationData({...dialogConfirmationData, visible: false});
+  const handleDialogInfoClose = () => {
+    setDialogInfoData({...dialogInfoData, visible: false});
+  }
+
+  const handleDialogConfirmationAnswer = (answer: boolean, productId: number) => {
+
+    if (answer) {
+      productService.deleteById(productId)
+        .then(() => {
+          setProducts([]);
+          setQueryParams({ ...queryParams, page: 0 });
+        })
+        .catch(error => {
+          setDialogInfoData({
+            visible: true,
+            message: error.response.data.error
+          })
+        });
+    }
+
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: false });
 
   }
 
@@ -91,7 +116,7 @@ export default function ProductListing() {
                   <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                   <td className="dsc-txt-left">{product.name}</td>
                   <td><img className="dsc-product-listing-btn" src={deleteIcon} alt="Edit" /></td>
-                  <td><img onClick={handleDeleteClick} className="dsc-product-listing-btn" src={editIcon} alt="Delete" /></td>
+                  <td><img onClick={() => handleDeleteClick(product.id)} className="dsc-product-listing-btn" src={editIcon} alt="Delete" /></td>
                 </tr>
               ))
             }
@@ -105,8 +130,16 @@ export default function ProductListing() {
         }
       </section>
       {
+        dialogInfoData.visible &&
+        <DialogInfo
+          message={dialogInfoData.message}
+          onDialogClose={handleDialogInfoClose}
+        />
+      }
+      {
         dialogConfirmationData.visible &&
         <DialogConfirmation
+          id={dialogConfirmationData.id}
           message={dialogConfirmationData.message}
           onDialogAnswer={handleDialogConfirmationAnswer}
         />

@@ -256,19 +256,20 @@ nav h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .dsc-btn-blue {
   border: none;
   background-color: var(--dsc-color-btn-primary);
   color: var(--dsc-color-btn-inverse);
+  margin-bottom: 20px;
 }
 
 .dsc-btn-white {
   background-color: var(--dsc-color-btn-inverse);
   color: var(--dsc-color-btn-primary);
   border: 1px solid var(--dsc-color-btn-primary);
+  margin-bottom: 30px;
 }
 
 .dsc-btn-next-page {
@@ -497,6 +498,7 @@ th {
   background-color: var(--dsc-color-card-bg);
   border-radius: 5px;
   padding: 20px;
+  padding-bottom: 5px;
   position: absolute;
   top: 50%;
   left: 50%;
