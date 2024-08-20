@@ -18,6 +18,7 @@
   --dsc-color-font-placeholder: #d9d9d9;
 
   --dsc-color-error: #f33;
+  --dsc-color-bg-count: #f33;
 }
 
 * {
@@ -255,6 +256,7 @@ nav h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .dsc-btn-blue {
@@ -499,6 +501,13 @@ th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.dsc-dialog-btn-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .dsc-dialog-box h2 {

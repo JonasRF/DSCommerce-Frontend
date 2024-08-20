@@ -6,7 +6,7 @@ import { ProductDTO } from "../../../../models/product";
 import * as productService from "../../../../services/product-service";
 import SearchBar from "../../../../components/SearchBar";
 import ButtonNextPage from "../../../../components/ButtonNextPage";
-import DialogInfo from "../../../../components/DialogInfo";
+import DialogConfirmation from "../../../../components/DialogConfirmation";
 
 type QueryParams = {
   page: number;
@@ -15,9 +15,9 @@ type QueryParams = {
 
 export default function ProductListing() {
 
-  const [dialogInfoData, setDialogInfoData] = useState({
+  const [dialogConfirmationData, setDialogConfirmationData] = useState({
     visible: false,
-    message: "Operação realizada com sucesso!"
+    message: "Tem certeza?"
   })
 
   const [isLastPage, setIsLastPage] = useState(false);
@@ -47,12 +47,14 @@ export default function ProductListing() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
-  const handleDialogInfoClose = () => {
-    setDialogInfoData({ ...dialogInfoData, visible: false });
+  const handleDeleteClick = () => {
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: true });
   }
 
-  const handleDeleteClick = () => {
-    setDialogInfoData({ ...dialogInfoData, visible: true });
+  const handleDialogConfirmationAnswer = (answer: boolean) => {
+    console.log("Resposta", answer);
+    setDialogConfirmationData({...dialogConfirmationData, visible: false});
+
   }
 
   return (
@@ -83,7 +85,7 @@ export default function ProductListing() {
           <tbody>
             {
               products.map(product => (
-                <tr className="dsc-line-bottom">
+                <tr key={product.id} className="dsc-line-bottom">
                   <td className="dsc-tb576">{product.id}</td>
                   <td><img className="dsc-product-listing-image" src={product.imgUrl} alt={product.name} /></td>
                   <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
@@ -103,10 +105,10 @@ export default function ProductListing() {
         }
       </section>
       {
-        dialogInfoData.visible &&
-        <DialogInfo
-          message={dialogInfoData.message}
-          onDialogClose={handleDialogInfoClose}
+        dialogConfirmationData.visible &&
+        <DialogConfirmation
+          message={dialogConfirmationData.message}
+          onDialogAnswer={handleDialogConfirmationAnswer}
         />
       }
     </main>
