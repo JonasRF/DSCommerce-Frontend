@@ -46,10 +46,10 @@ export default function ProductDetails() {
           }
           <div className="dsc-btn-container">
           <div onClick={handleByClick}>
-           <ButtonPrimary name="Comprar" />
+           <ButtonPrimary text="Comprar" />
            </div>
            <Link to="/">
-           <ButtonInverse name="Inicio" />
+           <ButtonInverse text="Inicio" />
            </Link>
            
           </div>

@@ -20,7 +20,7 @@ export default function HeaderAdmin() {
             >
               <div className="dsc-menu-item">
                 <img src={homeIcon} alt="Inicio" />
-                <p>Inicio</p>
+                <p>Início</p>
               </div>
             </NavLink>
             <NavLink 

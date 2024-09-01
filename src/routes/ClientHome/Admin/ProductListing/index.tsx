@@ -18,7 +18,7 @@ export default function ProductListing() {
 
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
-    message: "Operação con sucesso!"
+    message: "Operação com sucesso!"
   })
 
   const [dialogConfirmationData, setDialogConfirmationData] = useState({
