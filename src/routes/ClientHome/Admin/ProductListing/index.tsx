@@ -8,6 +8,8 @@ import SearchBar from "../../../../components/SearchBar";
 import ButtonNextPage from "../../../../components/ButtonNextPage";
 import DialogConfirmation from "../../../../components/DialogConfirmation";
 import DialogInfo from "../../../../components/DialogInfo";
+import ButtonInverse from "../../../../components/ButtonInverse";
+import { useNavigate } from "react-router-dom";
 
 type QueryParams = {
   page: number;
@@ -15,6 +17,8 @@ type QueryParams = {
 }
 
 export default function ProductListing() {
+
+  const navigate = useNavigate();
 
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
@@ -45,6 +49,10 @@ export default function ProductListing() {
       })
   }, [queryParams]);
 
+  function handleNewProductList() {
+    navigate("/admin/products/create");
+  }
+
   const handleSearch = (searchText: string) => {
     setProducts([]);
     setQueryParams({ ...queryParams, page: 0, name: searchText });
@@ -59,7 +67,7 @@ export default function ProductListing() {
   }
 
   const handleDialogInfoClose = () => {
-    setDialogInfoData({...dialogInfoData, visible: false});
+    setDialogInfoData({ ...dialogInfoData, visible: false });
   }
 
   const handleDialogConfirmationAnswer = (answer: boolean, productId: number) => {
@@ -74,7 +82,7 @@ export default function ProductListing() {
           setDialogInfoData({
             visible: true,
             message: error.response.data.error
-          })
+          });
         });
     }
 
@@ -89,8 +97,8 @@ export default function ProductListing() {
           <h3 >Cadastro de produtos</h3>
         </div>
         <div className="dsc-btn-container">
-          <div className="btn dsc-btn-white">
-            Inicio
+          <div onClick={handleNewProductList}>
+            <ButtonInverse text="Novo" />
           </div>
         </div>
 
