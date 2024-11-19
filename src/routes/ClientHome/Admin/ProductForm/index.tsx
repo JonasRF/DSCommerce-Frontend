@@ -21,7 +21,7 @@ export default function ProductForm() {
             placeholder: "Nome",
         },
         price: {
-            value: 1,
+            value: "",
             id: "price",
             name: "price",
             type: "numer",
@@ -42,9 +42,6 @@ export default function ProductForm() {
 
     useEffect(() => {
 
-        const obj = forms.validate(formData, "price");
-        console.log(obj);
-
         if (isEditing) {
             productService.findById(Number(params.productId))
                 .then(response => {
@@ -59,6 +56,11 @@ export default function ProductForm() {
         setFormData(dataValidated);
     }
 
+    function handleTurnDurty(name: string) {
+        const newFormData = forms.toDurty(formData, name);
+        setFormData(newFormData);
+    }
+
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
@@ -70,6 +72,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.name}
                                     className="dsc-form-control"
+                                    onTurnDurty={handleTurnDurty}
                                     onChange={handleInputChange}
                                 />
                                 <div className="dsc-form-error">{formData.name.message}</div>
@@ -78,6 +81,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.price}
                                     className="dsc-form-control"
+                                    onTurnDurty={handleTurnDurty}
                                     onChange={handleInputChange}
                                 />
                                 <div className="dsc-form-error">{formData.price.message}</div>
@@ -86,6 +90,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.imgUrl}
                                     className="dsc-form-control"
+                                    onTurnDurty={handleTurnDurty}
                                     onChange={handleInputChange}
                                 />
                             </div>
