@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function update(inputs: any, name: string, newValue: any) {
     return { ...inputs, [name]: { ...inputs[name], value: newValue } };
@@ -39,6 +41,6 @@ export function updateAndValidate(inputs: any, name: string, newValue: any) {
 }
 
 export function dirtyAndValidate(inputs: any, name: string) {
-    const dataDirty= toDurty(inputs, name);
+    const dataDirty = toDurty(inputs, name);
     return validate(dataDirty, name);
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Link, useParams } from "react-router-dom";
 import "./styles.css";
 import { useEffect, useState } from "react";
@@ -19,12 +21,16 @@ export default function ProductForm() {
             name: "name",
             type: "text",
             placeholder: "Nome",
+            validation: function(value: string){
+                return /^.{3,80}/.test(value);
+            },
+            message: "Favor informar um nome de 3 a 80 caracteres"
         },
         price: {
             value: "",
             id: "price",
             name: "price",
-            type: "numer",
+            type: "number",
             placeholder: "Preço",
             validation: function(value: any) {
                 return Number(value) > 0;

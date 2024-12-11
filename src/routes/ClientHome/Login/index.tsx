@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useState } from 'react';
 import './styles.css';
 import { Link, useNavigate } from "react-router-dom";
@@ -72,7 +73,7 @@ export default function Login() {
                                     onTurnDurty={handleTurnDurty}
                                     onChange={handleInputChange}
                                 />
-                                <div className="dsc-form-error"></div>
+                                <div className="dsc-form-error">{formData.username.message}</div>
                             </div>
                             <div>
                                 <FormInput
