@@ -365,6 +365,10 @@ nav h1 {
   display: none;
 }
 
+.dsc-form-select-container {
+  padding: unset;
+}
+
 .dsc-select:invalid {
   color: var(--dsc-color-font-placeholder);
 }
