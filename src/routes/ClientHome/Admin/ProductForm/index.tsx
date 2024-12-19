@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./styles.css";
 import { useEffect, useState } from "react";
 import FormInput from "../../../../components/FormInput";
@@ -17,6 +17,7 @@ export default function ProductForm() {
     const params = useParams();
 
     const isEditing = params.productId !== 'create';
+      const navigate = useNavigate();
 
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
@@ -109,7 +110,14 @@ export default function ProductForm() {
             return;
         }
             
-       //console.log(forms.toValue(formData));
+       const requestBody = forms.toValue(formData);
+         if(isEditing){
+              requestBody.id = Number(params.productId);
+         }
+       productService.updateRequest(requestBody)
+         .then(() => {
+                navigate("/admin/products");
+         });
     }
 
     return (

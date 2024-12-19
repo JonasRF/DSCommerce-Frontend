@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
+import { ProductDTO } from "../models/product";
 
 export function findPageRequest(page: number, name: string, size = 12, sort = "name") {
     const config: AxiosRequestConfig = {
@@ -23,6 +25,16 @@ export function deleteById(id: number) {
     const config: AxiosRequestConfig = {
         method: "DELETE",
         url: `/products/${id}`,
+        withCredentials: true
+    }
+    return requestBackend(config);
+}
+
+export function updateRequest(data: ProductDTO) {
+    const config: AxiosRequestConfig = {
+        method: "PUT",
+        url: `/products/${data.id}`,
+        data,
         withCredentials: true
     }
     return requestBackend(config);
