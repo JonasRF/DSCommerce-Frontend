@@ -31,7 +31,7 @@ export function validate(inputs: any, name: string) {
     return { ...inputs, [name]: { ...inputs[name], invalid: isInvalid.toString() } }
 }
 
-export function toDurty(inputs: any, name: string){
+export function toDurty(inputs: any, name: string) {
     return { ...inputs, [name]: { ...inputs[name], dirty: "true" } };
 }
 
@@ -56,7 +56,7 @@ export function toDirtyAll(inputs: any) {
 export function validateAll(inputs: any) {
     const newInputs: any = {}
     for (var name in inputs) {
-        if(inputs[name].validation){
+        if (inputs[name].validation) {
             const isInvalid = !inputs[name].validation(inputs[name].value)
             newInputs[name] = { ...inputs[name], invalid: isInvalid.toString() }
         } else {
@@ -73,7 +73,7 @@ export function dirtyAndValidateAll(inputs: any) {
 
 export function hasAnyInvalid(inputs: any) {
     for (var name in inputs) {
-        if(inputs[name].dirty === "true" && inputs[name].invalid === "true"){
+        if (inputs[name].dirty === "true" && inputs[name].invalid === "true") {
             return true;
         }
     }

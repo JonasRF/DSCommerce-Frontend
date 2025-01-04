@@ -17,7 +17,7 @@ export default function ProductForm() {
     const params = useParams();
 
     const isEditing = params.productId !== 'create';
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
@@ -104,20 +104,21 @@ export default function ProductForm() {
         event.preventDefault();
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
-        
-        if(forms.hasAnyInvalid(formDataValidated)){
+
+        if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
         }
-            
-       const requestBody = forms.toValue(formData);
-         if(isEditing){
-              requestBody.id = Number(params.productId);
-         }
-       productService.updateRequest(requestBody)
-         .then(() => {
+
+        const requestBody = forms.toValue(formData);
+        if (isEditing) {
+            requestBody.id = Number(params.productId);
+        }
+        const request = isEditing ? productService.updateRequest(requestBody) : productService.insertRequest(requestBody);
+        request
+            .then(() => {
                 navigate("/admin/products");
-         });
+            });
     }
 
     return (
@@ -126,68 +127,68 @@ export default function ProductForm() {
                 <div className="dsc-product-form-container">
                     <div className="dsc-card dsc-form">
                         <form className="dsc-card dsc-form" onSubmit={handleSubmit}>
-                        <h2>Dados do Produto</h2>
-                        <div className="dsc-form-controls-container">
-                            <div>
-                                <FormInput
-                                    {...formData.name}
-                                    className="dsc-form-control"
-                                    onTurnDurty={handleTurnDurty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="dsc-form-error">{formData.name.message}</div>
+                            <h2>Dados do Produto</h2>
+                            <div className="dsc-form-controls-container">
+                                <div>
+                                    <FormInput
+                                        {...formData.name}
+                                        className="dsc-form-control"
+                                        onTurnDurty={handleTurnDurty}
+                                        onChange={handleInputChange}
+                                    />
+                                    <div className="dsc-form-error">{formData.name.message}</div>
+                                </div>
+                                <div>
+                                    <FormInput
+                                        {...formData.price}
+                                        className="dsc-form-control"
+                                        onTurnDurty={handleTurnDurty}
+                                        onChange={handleInputChange}
+                                    />
+                                    <div className="dsc-form-error">{formData.price.message}</div>
+                                </div>
+                                <div>
+                                    <FormInput
+                                        {...formData.imgUrl}
+                                        className="dsc-form-control"
+                                        onTurnDurty={handleTurnDurty}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                                <div>
+                                    <FormSelect
+                                        {...formData.categories}
+                                        className="dsc-form-control dsc-form-select-container"
+                                        styles={selectStyles}
+                                        options={categories}
+                                        onChange={(obj: any) => {
+                                            const newFormData = forms.update(formData, "categories", obj);
+                                            console.log(newFormData.categories)
+                                            setFormData(newFormData);
+                                        }}
+                                        onTurnDurty={handleTurnDurty}
+                                        isMulti
+                                        getOptionLabel={(obj: { name: any; }) => obj.name}
+                                        getOptionValue={(obj: { id: any; }) => String(obj.id)}
+                                    />
+                                    <div className="dsc-form-error">{formData.categories.message}</div>
+                                </div>
+                                <div>
+                                    <FormTextArea
+                                        {...formData.description}
+                                        className="dsc-form-control dsc-textarea"
+                                        onTurnDurty={handleTurnDurty}
+                                        onChange={handleInputChange}
+                                    />
+                                    <div className="dsc-form-error">{formData.description.message}</div>
+                                </div>
                             </div>
-                            <div>
-                                <FormInput
-                                    {...formData.price}
-                                    className="dsc-form-control"
-                                    onTurnDurty={handleTurnDurty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="dsc-form-error">{formData.price.message}</div>
+                            <div className="dsc-product-form-button">
+                                <Link to="/admin/products">
+                                    <button type="reset" className="dsc-btn dsc-btn-white">Cancelar</button>
+                                </Link>
+                                <button type="submit" className="dsc-btn dsc-btn-blue">Salvar</button>
                             </div>
-                            <div>
-                                <FormInput
-                                    {...formData.imgUrl}
-                                    className="dsc-form-control"
-                                    onTurnDurty={handleTurnDurty}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <div>
-                                <FormSelect
-                                    {...formData.categories}
-                                    className="dsc-form-control dsc-form-select-container"
-                                    styles={selectStyles}
-                                    options={categories}
-                                    onChange={(obj: any) => {
-                                        const newFormData = forms.update(formData, "categories", obj);
-                                        console.log(newFormData.categories)
-                                        setFormData(newFormData);
-                                    }}
-                                    onTurnDurty={handleTurnDurty}
-                                    isMulti
-                                    getOptionLabel={(obj: { name: any; }) => obj.name}
-                                    getOptionValue={(obj: { id: any; }) => String(obj.id)}
-                                />
-                                <div className="dsc-form-error">{formData.categories.message}</div>
-                            </div>
-                            <div>
-                                <FormTextArea
-                                    {...formData.description}
-                                    className="dsc-form-control dsc-textarea"
-                                    onTurnDurty={handleTurnDurty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="dsc-form-error">{formData.description.message}</div>
-                            </div>
-                        </div>
-                        <div className="dsc-product-form-button">
-                            <Link to="/admin/products">
-                                <button type="reset" className="dsc-btn dsc-btn-white">Cancelar</button>
-                            </Link>
-                            <button type="submit" className="dsc-btn dsc-btn-blue">Salvar</button>
-                        </div>
                         </form>
                     </div>
                 </div>
