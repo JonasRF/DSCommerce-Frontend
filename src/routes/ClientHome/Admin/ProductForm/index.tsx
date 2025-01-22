@@ -11,6 +11,7 @@ import FormTextArea from "../../../../components/FormTextArea";
 import { CategoryDTO } from "../../../../models/category";
 import FormSelect from "../../../../components/FormSelect";
 import { selectStyles } from "../../../../utils/select";
+import ImageUpload from "../../../../components/ImageUpload";
 
 export default function ProductForm() {
 
@@ -18,6 +19,9 @@ export default function ProductForm() {
 
     const isEditing = params.productId !== 'create';
     const navigate = useNavigate();
+
+    const [uploadedImgUrl, setUploadedImgUrl] = useState("");
+    const [productImgUrl] = useState("");
 
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
@@ -102,6 +106,7 @@ export default function ProductForm() {
 
     function handleSubmit(event: any) {
         event.preventDefault();
+        formData.imgUrl.value = uploadedImgUrl || productImgUrl;
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
 
@@ -124,6 +129,12 @@ export default function ProductForm() {
                 setFormData(newInputs);
             });
     }
+
+    
+    const onUploadSuccess = (imgUrl: string) => {
+        setUploadedImgUrl(imgUrl);
+    }
+
 
     return (
         <main>
@@ -152,13 +163,8 @@ export default function ProductForm() {
                                     <div className="dsc-form-error">{formData.price.message}</div>
                                 </div>
                                 <div>
-                                    <FormInput
-                                        {...formData.imgUrl}
-                                        className="dsc-form-control"
-                                        onTurnDurty={handleTurnDurty}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
+                               <ImageUpload onUploadSucess={onUploadSuccess} productImgUrl={productImgUrl} />
+                               </div>
                                 <div>
                                     <FormSelect
                                         {...formData.categories}
