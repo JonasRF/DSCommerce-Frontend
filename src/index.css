@@ -365,6 +365,18 @@ nav h1 {
   display: none;
 }
 
+.dsc-form-global-error {
+  border: 1px solid var(--dsc-color-error);
+  border-radius: 4px;
+  font-size: 12px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  color: var(--dsc-color-error);
+}
+
 .dsc-form-select-container {
   padding: unset;
 }
