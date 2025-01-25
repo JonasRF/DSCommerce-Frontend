@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
-import { api } from '../../utils/api';
-import { AxiosProgressEvent } from 'axios';
+import React, { useEffect, useState } from 'react';
+import * as productService from '../../services/product-service';
 import styles from '../../components/ImageUpload/imageUpload.module.css';
 import UploadImg from '../../../public/Upload.svg';
 
@@ -12,30 +11,37 @@ type Props = {
 
 export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
     const [uploadProgress, setUploadProgress] = useState(0);
-    const [uploadedImgUrl, setUploadedImgUrl] = useState("");
+    const [uploadedImgUrl, setUploadedImgUrl] = useState<File | null>(null);
 
-    const imgUrl = productImgUrl || uploadedImgUrl;
-    const onUploadProgress = (progressEvent: AxiosProgressEvent) => {
-        const progress = progressEvent.total ? Math.round((progressEvent.loaded * 100) / progressEvent.total) : 0;
+    const imgUrl = productImgUrl || (uploadedImgUrl ? URL.createObjectURL(uploadedImgUrl) : null);
+
+    const onUploadProgress = (progressEvent: ProgressEvent) => {
+        const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+    
         setUploadProgress(progress);
     }
 
-    const UploadImage = async (selectedImage: File) => {
-        const formData = new FormData();
-        formData.append("file", selectedImage);
-
-await api.post("/products/image", formData, {
-    onUploadProgress,
-})
-.then((response) => {
-    setUploadedImgUrl(response.data.url);
-    onUploadSucess(response.data.url);
-})
-}
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedImage = event.target.files?.[0];
-        if (selectedImage) {
-            UploadImage(selectedImage);
+    useEffect(() => {
+        if (uploadedImgUrl) {
+            const formData = new FormData();
+            formData.append('file', uploadedImgUrl);
+            productService.uploadImage(uploadedImgUrl, onUploadProgress)
+                .then((response) => {
+                    setUploadProgress(response.data.uri);
+                    onUploadSucess(response.data.uri);
+                })
+                .catch((error: Error) => {
+                    console.log('Erro ao fazer upload de imagem: ', error);
+                });
+        }
+    }, [onUploadSucess, uploadedImgUrl]);
+   
+   
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const files = event.target.files;
+        if (files) {
+            setUploadedImgUrl(files[0]);
+            setUploadProgress(0);
         }
     }
     return (
@@ -67,5 +73,5 @@ await api.post("/products/image", formData, {
             </div>
         </div>
     )
-
+    
 }

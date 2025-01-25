@@ -49,3 +49,16 @@ export function insertRequest(data: ProductDTO) {
     }
     return requestBackend(config);
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function uploadImage(file: File, _onUploadProgress: (progressEvent: ProgressEvent) => void) {   
+    const formData = new FormData();
+    formData.append("file", file);
+    const config: AxiosRequestConfig = {
+        method: "POST",
+        url: "/products/image",
+        data: formData,
+        withCredentials: true
+    }
+    return requestBackend(config);
+}
