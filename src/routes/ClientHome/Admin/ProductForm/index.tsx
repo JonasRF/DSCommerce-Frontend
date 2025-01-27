@@ -21,7 +21,7 @@ export default function ProductForm() {
     const navigate = useNavigate();
 
     const [uploadedImgUrl, setUploadedImgUrl] = useState("");
-    const [productImgUrl] = useState("");
+    const [productImgUrl, setProductImgUrl] = useState("");
 
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
@@ -92,6 +92,7 @@ export default function ProductForm() {
             productService.findById(Number(params.productId))
                 .then(response => {
                     setFormData(forms.updateAll(formData, response.data));
+                    setProductImgUrl(response.data.imgUrl);
                 })
         }
     }, []);
@@ -130,11 +131,9 @@ export default function ProductForm() {
             });
     }
 
-    
     const onUploadSuccess = (imgUrl: string) => {
         setUploadedImgUrl(imgUrl);
     }
-
 
     return (
         <main>
@@ -163,7 +162,7 @@ export default function ProductForm() {
                                     <div className="dsc-form-error">{formData.price.message}</div>
                                 </div>
                                 <div>
-                               <ImageUpload onUploadSucess={onUploadSuccess} productImgUrl={productImgUrl} />
+                               <ImageUpload onUploadSucess={onUploadSuccess} productImgUrl={productImgUrl} />     
                                </div>
                                 <div>
                                     <FormSelect

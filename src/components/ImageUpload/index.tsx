@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import * as productService from '../../services/product-service';
 import styles from '../../components/ImageUpload/imageUpload.module.css';
-import UploadImg from '../../../public/Upload.svg';
+import UploadImg from '../../assets/Upload.svg';
 
 type Props = {
     onUploadSucess: (imgUrl: string) => void;
@@ -16,8 +16,8 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
     const imgUrl = productImgUrl || (uploadedImgUrl ? URL.createObjectURL(uploadedImgUrl) : null);
 
     const onUploadProgress = (progressEvent: ProgressEvent) => {
-        const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-    
+        const progress = Math.round((progressEvent.loaded * 1000) / progressEvent.total);
+
         setUploadProgress(progress);
     }
 
@@ -35,12 +35,11 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
                 });
         }
     }, [onUploadSucess, uploadedImgUrl]);
-   
-   
+
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         const files = event.target.files;
         if (files) {
-            setUploadedImgUrl(files[0]);
+            setUploadedImgUrl(files?.[0]);
             setUploadProgress(0);
         }
     }
@@ -53,25 +52,24 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
                     <small className={styles.uploadTextHelper}>A imagem deve ser JPG ou PNG e <br /> não deve ultrapassar
                         <strong> 5 mb.</strong> </small>
                 </div>
+
             </div>
             <div className="col-6">
-                {
-                    uploadProgress > 0 && (
+                <div className={styles.uploadedImageContainer}>
+                    {imgUrl ? (
                         <>
-                            <img src={UploadImg} alt='Upload' />
-                            <div className={styles.uploadProgressContainer}>
-                                <div className={styles.uploadProgress} style={{ width: `${uploadProgress}` }}></div>
-                            </div>
+                        <img src={imgUrl} alt="Imagem do produto" />
                         </>
-                    )
-                }
-                {
-                    imgUrl && uploadProgress === 0 && (
-                        <img src={imgUrl} alt={imgUrl} className={styles.uploadImage} />
-                    )
-                }
+                    ) : (
+                        <img src={UploadImg} alt="Upload" hidden/>
+                    )}
+                    {uploadProgress > 0 && (
+                        <div className={styles.uploadProgress}>
+                            <div style={{ width: `${uploadProgress}%` }} />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
-    )
-    
+    );
 }
