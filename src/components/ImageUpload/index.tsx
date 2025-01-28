@@ -12,8 +12,11 @@ type Props = {
 export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploadedImgUrl, setUploadedImgUrl] = useState<File | null>(null);
+    const [imgUrl, setImgUrl] = useState<string | null>(null);
 
-    const imgUrl = productImgUrl || (uploadedImgUrl ? URL.createObjectURL(uploadedImgUrl) : null);
+    useEffect(() => {
+        setImgUrl(productImgUrl || (uploadedImgUrl ? URL.createObjectURL(uploadedImgUrl) : null));
+    }, [productImgUrl, uploadedImgUrl]);
 
     const onUploadProgress = (progressEvent: ProgressEvent) => {
         const progress = Math.round((progressEvent.loaded * 1000) / progressEvent.total);
@@ -43,6 +46,7 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
             setUploadProgress(0);
         }
     }
+    
     return (
         <div className="row">
             <div className="col-6">
@@ -58,6 +62,7 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
                 <div className={styles.uploadedImageContainer}>
                     {imgUrl ? (
                         <>
+                
                         <img src={imgUrl} alt="Imagem do produto" />
                         </>
                     ) : (
