@@ -44,29 +44,39 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
         if (files) {
             setUploadedImgUrl(files?.[0]);
             setUploadProgress(0);
+            const reader = new FileReader();
+            reader.onload = (e) => setImgUrl(e.target?.result as string);
+            reader.readAsDataURL(files?.[0]);
         }
     }
-    
+
+    function handleDelete() {
+        setUploadedImgUrl(null);
+        setImgUrl(null);
+        setUploadProgress(0);
+    }
+
     return (
         <div className="row">
             <div className="col-6">
                 <div className={styles.uploadButtonContainer}>
                     <input type="file" id="upload" accept="image/png, image/jpg" onChange={handleChange} hidden />
                     <label htmlFor='upload'>ADICIONAR IMAGEM</label>
-                    <small className={styles.uploadTextHelper}>A imagem deve ser JPG ou PNG e <br /> não deve ultrapassar
-                        <strong> 5 mb.</strong> </small>
+                    <small className={styles.uploadTextHelper}>A imagem deve ser JPG ou PNG e não deve ultrapassar
+                        <strong>5 mb.</strong> </small>
                 </div>
-
             </div>
             <div className="col-6">
                 <div className={styles.uploadedImageContainer}>
                     {imgUrl ? (
                         <>
-                
-                        <img src={imgUrl} alt="Imagem do produto" />
+                            <img src={imgUrl} alt="Imagem do produto" />
+                            <div className={styles.uploadButton}>
+                                <label onClick={handleDelete}>DELETAR IMAGEM</label>
+                            </div>
                         </>
                     ) : (
-                        <img src={UploadImg} alt="Upload" hidden/>
+                        <img src={UploadImg} alt="Upload" hidden />
                     )}
                     {uploadProgress > 0 && (
                         <div className={styles.uploadProgress}>

@@ -93,7 +93,7 @@ export default function ProductForm() {
                 .then(response => {
                     setFormData(forms.updateAll(formData, response.data));
                     setProductImgUrl(response.data.imgUrl);
-                })
+                })             
         }
     }, []);
 
