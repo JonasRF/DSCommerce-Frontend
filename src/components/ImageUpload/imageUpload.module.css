@@ -1,5 +1,6 @@
-.uploadButtonContainer label{
+.uploadButtonContainer label {
     display: flex;
+    justify-content: center;
     background: #407bff;
     border-radius: 10px;
     color: #fff;
@@ -20,6 +21,11 @@
     color: #407bff;
     display: flex;
     margin-top: 10px;
+    justify-content: center;
+}
+
+.uploadTextHelper strong {
+    margin-left: 4px;
 }
 
 .uploadTextHelperSpace {
@@ -49,15 +55,16 @@
 }
 
 .uploadButton {
+    display: flex;
+    justify-content: center;
+    border: none;
     background: #407bff;
     border-radius: 10px;
     color: #fff;
     font-weight: bold;
     font-size: 14px;
-    line-height: 19px;
     text-align: center;
-    letter-spacing: -0.015em;
-    padding: 10px 30px;
+    padding: 10px 120px;
     cursor: pointer;
     margin-bottom: 10px;
 }

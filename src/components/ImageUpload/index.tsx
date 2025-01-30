@@ -63,7 +63,7 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
                     <input type="file" id="upload" accept="image/png, image/jpg" onChange={handleChange} hidden />
                     <label htmlFor='upload'>ADICIONAR IMAGEM</label>
                     <small className={styles.uploadTextHelper}>A imagem deve ser JPG ou PNG e não deve ultrapassar
-                        <strong>5 mb.</strong> </small>
+                        <strong>5 MB.</strong> </small>
                 </div>
             </div>
             <div className="col-6">
@@ -71,8 +71,8 @@ export default function ImageUpload({ onUploadSucess, productImgUrl }: Props) {
                     {imgUrl ? (
                         <>
                             <img src={imgUrl} alt="Imagem do produto" />
-                            <div className={styles.uploadButton}>
-                                <label onClick={handleDelete}>DELETAR IMAGEM</label>
+                            <div >
+                                <button className={styles.uploadButton} onClick={handleDelete}>DELETAR IMAGEM</button>
                             </div>
                         </>
                     ) : (
