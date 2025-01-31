@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import CartIcon from "../CartIcon";
 import iconAdmin from "../../assets/Admin.svg";
+import iconListOrder from "../../assets/755802.png"
 import * as authService from "../../services/auth-service";
 import { useContext } from "react";
 import { ContextToken } from "../../utils/context-token";
@@ -16,6 +17,11 @@ export default function HeaderClient() {
       <nav className="dsc-container">
         <Link to="/">
           <h1>DSCommerce</h1>
+        </Link>
+        <Link to="/list-orders">
+        <div className="dsc-List-orders">
+          <img  src={iconListOrder} alt="icone de carrinho de compras" />
+        </div>
         </Link>
         <div className="dsc-navbar-right">
           {

@@ -164,7 +164,15 @@ nav a {
     margin: 5px 20px 0 2px;
     display: flex;
     align-items: center;
+    padding: 10px 0 0 0;
+  }
 
+  .dsc-List-orders {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 400px;
+    padding-left: 0 30px 0 0;
   }
 
   .dsc-menu-inicio {
@@ -201,7 +209,7 @@ nav h1 {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-
+  padding: 0 60px;
 }
 
 .dsc-card {

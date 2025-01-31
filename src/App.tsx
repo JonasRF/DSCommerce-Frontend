@@ -22,6 +22,7 @@ import RecoveryPassword from "./routes/ClientHome/RecoveryPassword";
 import Confirmation from "./routes/ClientHome/Confirmation";
 import ProductListing from "./routes/ClientHome/Admin/ProductListing";
 import ProductForm from "./routes/ClientHome/Admin/ProductForm";
+import ListOrder from "./components/ListOrder";
 
 export default function App() {
 
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="/" element={<ClientHome />}>
             <Route index element={<Catalog />} />
             <Route path="catalog" element={<Catalog />} />
+            <Route path="list-orders" element={<ListOrder />} />
             <Route path="product-details/:productId" element={<ProductDetails />} />
             <Route path="cart" element={<Cart />} />
             <Route path="login" element={<Login />} />
