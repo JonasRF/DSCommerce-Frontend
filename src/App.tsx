@@ -23,6 +23,7 @@ import Confirmation from "./routes/ClientHome/Confirmation";
 import ProductListing from "./routes/ClientHome/Admin/ProductListing";
 import ProductForm from "./routes/ClientHome/Admin/ProductForm";
 import ListOrder from "./components/ListOrder";
+import { OrderDTO } from "./models/order";
 
 export default function App() {
 

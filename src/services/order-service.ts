@@ -21,3 +21,13 @@ export function placeOrderRequest(cart: OrderDTO) {
     }
     return requestBackend(config);
 }
+
+export function findOrderByUserRequest() {
+
+    const config : AxiosRequestConfig = {
+        url: "/orders/order/orderUser",
+        method: "GET",
+        withCredentials: true
+    }
+    return requestBackend(config);
+}
