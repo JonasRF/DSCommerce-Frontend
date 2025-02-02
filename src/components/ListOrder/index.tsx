@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { orderListDTO } from "../../models/order";
 import * as orderService from "../../services/order-service";
+import "./styles.css";
 
 export default function ListOrder() {
 
@@ -42,10 +43,9 @@ export default function ListOrder() {
 
   return (
     <>
-      <div className="dsc_header">
+      <div className="dsc_list_header">
         <h1>PEDIDOS REALIZADOS: </h1>
-      </div>
-      <div className="order-list">
+      <div className="order-list-container">
         {groupedOrderList.map((order) => (
           <div key={order.id} className="order-card">
             <div className="order-card-header">
@@ -54,20 +54,22 @@ export default function ListOrder() {
             <div className="order-card-body">
               <p>QuantityItens: {order.totalQuantity}</p>
               <p>Status: {getStatusName(order.status)}</p>
-              <div className="order-items">
+              <div className="dsc-order-items">
                 {order.items.map((item: any) => (
                   <div key={item.itemId} className="order-item">
                     <img src={item.img_url} alt="Imagem do produto" />
                     <p>Name: {item.productName}</p>
-                    <p>Price: {item.price}</p>
+                    <p>Price: R$ {item.price.toFixed(2)}</p>
                     <p>Quantity: {item.quantity}</p>
-                  </div>
+                  </div>                  
                 ))}
+                <h4>Valor Total: R$ {order.totalPrice.toFixed(2)}</h4>
               </div>
-              <h4>Valor Total: {order.totalPrice.toFixed(2)}</h4>
+             
             </div>
           </div>
         ))}
+      </div>
       </div>
     </>
   );

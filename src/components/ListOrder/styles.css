@@ -1,0 +1,118 @@
+.dsc_list_header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.dsc_list_header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-list-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.order-card {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #fff;
+    
+}
+.order-card-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.order-card-header h2 {
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    font-weight: 800;
+    color: #333;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.order-card-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.order-card-body p {
+    width: 960px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    background-color: var(--dsc-color-btn-primary);
+    border-radius: 10px;
+    padding: 10px 0;
+ 
+}
+
+.dsc-order-items {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.order-item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.order-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.order-item p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.order-card-body h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;  
+    margin-left: 10px;  
+}
